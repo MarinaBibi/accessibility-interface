@@ -45,3 +45,26 @@ function resetText() {
 function stopReadAloud() {
   window.speechSynthesis.cancel();
 }
+function validateForm() {
+  let name = document.getElementById("name").value;
+  let dob = document.getElementById("dob").value;
+  let kin = document.getElementById("kin").value;
+  let address = document.getElementById("address").value;
+
+  let errors = [];
+
+  if (!name) errors.push("Name is required");
+  if (!dob) errors.push("Date of birth is required");
+  if (!kin) errors.push("Next of kin is required");
+  if (!address) errors.push("Address is required");
+
+  let errorBox = document.getElementById("errorBox");
+
+  if (errors.length > 0) {
+    errorBox.innerHTML = errors.join("<br>");
+    return false;
+  } else {
+    errorBox.innerHTML = "Form is valid ✔";
+    return true;
+  }
+}
