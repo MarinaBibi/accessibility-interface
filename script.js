@@ -42,3 +42,6 @@ function resetText() {
   fontSize = 18;
   applyFontSize();
 }
+function stopReadAloud() {
+  window.speechSynthesis.cancel();
+}
