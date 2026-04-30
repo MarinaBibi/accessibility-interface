@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Interface</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Personal Details</h1>
+
+<div class="container">
+
+  <label for="name">Name:</label>
+  <input id="name" type="text">
+
+  <label for="dob">Date of Birth:</label>
+  <input id="dob" type="date">
+
+  <label for="kin">Next of Kin:</label>
+  <input id="kin" type="text">
+
+  <label for="address">Address:</label>
+  <input id="address" type="text">
+
+</div>
+
+<div class="buttons">
+  <button>Save</button>
+  <button>Edit</button>
+  <button onclick="readAloud()">Read Aloud</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
