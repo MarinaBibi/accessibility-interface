@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  background-color: white;
+  color: black;
+  margin: 20px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  font-size: 18px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
