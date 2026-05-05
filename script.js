@@ -1,3 +1,38 @@
+// --------------------
+// SIMULATED DATABASE
+// --------------------
+const database = [
+  {
+    name: "John Smith",
+    dob: "1985-06-15",
+    kin: "Sarah Smith",
+    address: "12 Green Street"
+  },
+  {
+    name: "Emma Brown",
+    dob: "1992-03-22",
+    kin: "Michael Brown",
+    address: "45 Oak Avenue"
+  },
+  {
+    name: "Ali Khan",
+    dob: "2001-11-09",
+    kin: "Fatima Khan",
+    address: "8 River Road"
+  },
+  {
+    name: "Sophia Taylor",
+    dob: "1978-01-30",
+    kin: "James Taylor",
+    address: "22 Hill Lane"
+  },
+  {
+    name: "Daniel Wilson",
+    dob: "1999-09-17",
+    kin: "Laura Wilson",
+    address: "5 Park Close"
+  }
+];
 function readAloud() {
   let name = document.getElementById("name").value;
   let dob = document.getElementById("dob").value;
