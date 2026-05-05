@@ -103,3 +103,29 @@ function validateForm() {
     return true;
   }
 }
+// --------------------
+// FIND USER FUNCTION
+// --------------------
+function findUser() {
+
+  let nameInput = document.getElementById("name").value.toLowerCase();
+  let dobInput = document.getElementById("dob").value;
+
+  let user = database.find(person =>
+    person.name.toLowerCase() === nameInput &&
+    person.dob === dobInput
+  );
+
+  let errorBox = document.getElementById("errorBox");
+
+  if (user) {
+    document.getElementById("kin").value = user.kin;
+    document.getElementById("address").value = user.address;
+
+    errorBox.innerHTML = "User found ✔";
+    errorBox.style.color = "green";
+  } else {
+    errorBox.innerHTML = "User not found";
+    errorBox.style.color = "red";
+  }
+}
