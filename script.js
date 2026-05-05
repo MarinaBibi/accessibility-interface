@@ -129,3 +129,50 @@ function findUser() {
     errorBox.style.color = "red";
   }
 }
+let database = JSON.parse(localStorage.getItem("users")) || [];
+function saveUser() {
+
+    const name = document.getElementById("name").value;
+    const dob = document.getElementById("dob").value;
+    const kin = document.getElementById("kin").value;
+    const address = document.getElementById("address").value;
+
+    if (!name || !dob || !kin || !address) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    const user = {
+        name,
+        dob,
+        kin,
+        address
+    };
+
+    database.push(user);
+
+    localStorage.setItem("users", JSON.stringify(database));
+
+    alert("User saved successfully!");
+}function findUser() {
+
+    const nameInput = document.getElementById("name").value;
+    const dobInput = document.getElementById("dob").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const foundUser = users.find(user =>
+        user.name === nameInput &&
+        user.dob === dobInput
+    );
+
+    if (foundUser) {
+
+        document.getElementById("kin").value = foundUser.kin;
+        document.getElementById("address").value = foundUser.address;
+
+        alert("User found!");
+    } else {
+        alert("User not found.");
+    }
+}
