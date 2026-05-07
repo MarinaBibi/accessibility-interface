@@ -106,27 +106,24 @@ function validateForm() {
   if (!kin) errors.push("Next of kin is required");
   if (!address) errors.push("Address is required");
 
-  let errorBox = document.getElementById("errorBox");
-
   if (errors.length > 0) {
-  showMessage(errors.join(", "), "error");
-  return false;
-} else {
-  showMessage("Form valid ✔", "success");
-  return true;
-}
+    showMessage(errors.join(", "), "error");
+    return false;
+  } else {
+    showMessage("Form valid ✔", "success");
+    return true;
+  }
+} // ✅ DIESE KLAMMER HAT GEFEHLT
 
-   function saveUser() {
+
+function saveUser() {
+
+  if (!validateForm()) return;
 
   const name = document.getElementById("name").value;
   const dob = document.getElementById("dob").value;
   const kin = document.getElementById("kin").value;
   const address = document.getElementById("address").value;
-
-  if (!name || !dob || !kin || !address) {
-    showMessage("Please fill all fields ❌", "error");
-    return;
-  }
 
   const newUser = { name, dob, kin, address };
 
