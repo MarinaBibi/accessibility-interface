@@ -176,3 +176,15 @@ function findUser() {
     alert("User not found");
   }
 }
+function showMessage(text, type) {
+
+  const box = document.getElementById("messageBox");
+
+  box.innerHTML = text;
+  box.className = "message " + type;
+  box.style.display = "block";
+
+  setTimeout(() => {
+    box.style.display = "none";
+  }, 3000);
+}
