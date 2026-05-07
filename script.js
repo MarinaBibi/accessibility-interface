@@ -137,7 +137,13 @@ function validateForm() {
   showMessage("User saved successfully ✔", "success");
 }
   
-function findUser() {
+  function enableEdit() {
+  document.querySelectorAll("input").forEach(input => {
+    input.disabled = false;
+  });
+
+  showMessage("Edit mode enabled ✏️", "success");
+}
 
 function findUser() {
 
