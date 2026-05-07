@@ -116,9 +116,18 @@ function saveUser() {
   const address = document.getElementById("address").value;
 
   if (!name || !dob || !kin || !address) {
-    alert("Please fill all fields");
+    showMessage("Please fill all fields ❌", "error");
     return;
   }
+
+  const newUser = { name, dob, kin, address };
+
+  savedUsers.push(newUser);
+
+  localStorage.setItem("users", JSON.stringify(savedUsers));
+
+  showMessage("User saved successfully ✔", "success");
+}
 
   const newUser = { name, dob, kin, address };
 
