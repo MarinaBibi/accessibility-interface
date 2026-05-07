@@ -1,7 +1,7 @@
 // --------------------
-// SIMULATED DATABASE
+// DEFAULT DATABASE (for analysis)
 // --------------------
-const database = [
+const defaultUsers = [
   {
     name: "John Smith",
     dob: "1985-06-15",
@@ -33,6 +33,10 @@ const database = [
     address: "5 Park Close"
   }
 ];
+
+// Saved users (local storage)
+let savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
 function readAloud() {
   let name = document.getElementById("name").value;
   let dob = document.getElementById("dob").value;
@@ -103,31 +107,26 @@ function validateForm() {
     return true;
   }
 }
-// --------------------
-// FIND USER FUNCTION
-// --------------------
-function findUser() {
 
-  let nameInput = document.getElementById("name").value.toLowerCase();
-  let dobInput = document.getElementById("dob").value;
+function saveUser() {
 
-  let user = database.find(person =>
-    person.name.toLowerCase() === nameInput &&
-    person.dob === dobInput
-  );
+  const name = document.getElementById("name").value;
+  const dob = document.getElementById("dob").value;
+  const kin = document.getElementById("kin").value;
+  const address = document.getElementById("address").value;
 
-  let errorBox = document.getElementById("errorBox");
-
-  if (user) {
-    document.getElementById("kin").value = user.kin;
-    document.getElementById("address").value = user.address;
-
-    errorBox.innerHTML = "User found ✔";
-    errorBox.style.color = "green";
-  } else {
-    errorBox.innerHTML = "User not found";
-    errorBox.style.color = "red";
+  if (!name || !dob || !kin || !address) {
+    alert("Please fill all fields");
+    return;
   }
+
+  const newUser = { name, dob, kin, address };
+
+  savedUsers.push(newUser);
+
+  localStorage.setItem("users", JSON.stringify(savedUsers));
+
+  alert("Details saved successfully ✔");
 }
 let database = JSON.parse(localStorage.getItem("users")) || [];
 function saveUser() {
@@ -154,25 +153,26 @@ function saveUser() {
     localStorage.setItem("users", JSON.stringify(database));
 
     alert("User saved successfully!");
-}function findUser() {
+  
+function findUser() {
 
-    const nameInput = document.getElementById("name").value;
-    const dobInput = document.getElementById("dob").value;
+  const nameInput = document.getElementById("name").value.toLowerCase();
+  const dobInput = document.getElementById("dob").value;
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+  // combine default + saved users
+  const allUsers = [...defaultUsers, ...savedUsers];
 
-    const foundUser = users.find(user =>
-        user.name === nameInput &&
-        user.dob === dobInput
-    );
+  const foundUser = allUsers.find(user =>
+    user.name.toLowerCase() === nameInput &&
+    user.dob === dobInput
+  );
 
-    if (foundUser) {
+  if (foundUser) {
+    document.getElementById("kin").value = foundUser.kin;
+    document.getElementById("address").value = foundUser.address;
 
-        document.getElementById("kin").value = foundUser.kin;
-        document.getElementById("address").value = foundUser.address;
-
-        alert("User found!");
-    } else {
-        alert("User not found.");
-    }
+    alert("User found ✔");
+  } else {
+    alert("User not found");
+  }
 }
