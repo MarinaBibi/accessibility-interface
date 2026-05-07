@@ -1,6 +1,15 @@
-// --------------------
-// DEFAULT DATABASE (for analysis)
-// --------------------
+function showMessage(text, type) {
+
+  const box = document.getElementById("messageBox");
+
+  box.innerHTML = text;
+  box.className = "message " + type;
+  box.style.display = "block";
+
+  setTimeout(() => {
+    box.style.display = "none";
+  }, 3000);
+}
 const defaultUsers = [
   {
     name: "John Smith",
@@ -100,15 +109,14 @@ function validateForm() {
   let errorBox = document.getElementById("errorBox");
 
   if (errors.length > 0) {
-    errorBox.innerHTML = errors.join("<br>");
-    return false;
-  } else {
-    errorBox.innerHTML = "Form is valid ✔";
-    return true;
-  }
+  showMessage(errors.join(", "), "error");
+  return false;
+} else {
+  showMessage("Form valid ✔", "success");
+  return true;
 }
 
-function saveUser() {
+   function saveUser() {
 
   const name = document.getElementById("name").value;
   const dob = document.getElementById("dob").value;
@@ -128,47 +136,14 @@ function saveUser() {
 
   showMessage("User saved successfully ✔", "success");
 }
-
-  const newUser = { name, dob, kin, address };
-
-  savedUsers.push(newUser);
-
-  localStorage.setItem("users", JSON.stringify(savedUsers));
-
-  alert("Details saved successfully ✔");
-}
-let database = JSON.parse(localStorage.getItem("users")) || [];
-function saveUser() {
-
-    const name = document.getElementById("name").value;
-    const dob = document.getElementById("dob").value;
-    const kin = document.getElementById("kin").value;
-    const address = document.getElementById("address").value;
-
-    if (!name || !dob || !kin || !address) {
-        alert("Please fill all fields");
-        return;
-    }
-
-    const user = {
-        name,
-        dob,
-        kin,
-        address
-    };
-
-    database.push(user);
-
-    localStorage.setItem("users", JSON.stringify(database));
-
-    alert("User saved successfully!");
   
+function findUser() {
+
 function findUser() {
 
   const nameInput = document.getElementById("name").value.toLowerCase();
   const dobInput = document.getElementById("dob").value;
 
-  // combine default + saved users
   const allUsers = [...defaultUsers, ...savedUsers];
 
   const foundUser = allUsers.find(user =>
@@ -177,12 +152,14 @@ function findUser() {
   );
 
   if (foundUser) {
+
     document.getElementById("kin").value = foundUser.kin;
     document.getElementById("address").value = foundUser.address;
 
-    alert("User found ✔");
+    showMessage("User found ✔", "success");
+
   } else {
-    alert("User not found");
+    showMessage("User not found ❌", "error");
   }
 }
 function showMessage(text, type) {
